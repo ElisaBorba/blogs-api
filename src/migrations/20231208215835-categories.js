@@ -14,10 +14,6 @@ module.exports = {
         allowNull: false,
         type: Sequelize.STRING,
       },
-    }, {
-      timestamps: false,
-      underscored: true,
-      tableName: 'Categories'
     });
   },
 
