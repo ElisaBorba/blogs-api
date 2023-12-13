@@ -9,27 +9,28 @@ module.exports = (sequelize, DataTypes) => {
     content: DataTypes.STRING,
     published: DataTypes.DATE,
     updated: DataTypes.DATE,
-    title: DataTypes.STRING,
+    userId: {
+      type: DataTypes.INTEGER,
+      field: 'user_id',
+    },
     },
     {
       underscored: true,
       timestamps: false,
-      tableName: 'Blog_posts',
+      tableName: 'blog_posts',
     });
 
     BlogPost.associate = (models) => {
-        BlogPost.belongsToMany(models.User, {
-            foreignKey: { name: 'userId', field: 'user_id' },
-            as: 'Users'
-        });
-      };
-
-      BlogPost.associate = (models) => {
-        BlogPost.hasMany(models.PostCategory, {
-          foreignKey: 'post_id',
-          as: 'Posts_categories',
-        });
-      };
+      BlogPost.belongsToMany(models.User, {
+        foreignKey: 'user_id',
+        as: 'Users',
+      });
+  
+      BlogPost.hasMany(models.PostCategory, {
+        foreignKey: 'post_id',
+        as: 'Posts_categories',
+      });
+    };
     
   
     return BlogPost;
