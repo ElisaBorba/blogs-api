@@ -5,7 +5,6 @@ const { JWT_SECRET } = process.env;
 
 const addUser = async (displayName, email, password, image) => {
   const findEmail = await User.findOne({ where: { email } });
-  console.log('BLAAAAAAAAAAA', findEmail);
 
   if (findEmail) {
     throw new Error('User already registered');
