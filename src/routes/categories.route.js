@@ -5,5 +5,6 @@ const auth = require('../middlewares/auth');
 const { categoriesController } = require('../controllers');
 
 route.post('/', auth, validateName, categoriesController.addCategory);
-  
+route.get('/', auth, categoriesController.getAllCategories);
+
 module.exports = route;
