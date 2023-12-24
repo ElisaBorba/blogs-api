@@ -31,13 +31,23 @@ const addUser = async (displayName, email, password, image) => {
 
 const getAllUsers = async () => {
   const findAllUsers = await User.findAll({ attributes: { exclude: ['password'] } });
-    
-  console.log('BOOOOOOOSTA', findAllUsers);
-
   return findAllUsers;
+};
+
+const getUser = async (id) => {
+  const findUser = await User.findOne({
+    where: { id },
+    attributes: { exclude: ['password'] },
+  });
+
+  if (!findUser) {
+    throw new Error('User does not exist');
+  }
+  return findUser;
 };
 
 module.exports = {
   addUser,
   getAllUsers,
+  getUser,
 };

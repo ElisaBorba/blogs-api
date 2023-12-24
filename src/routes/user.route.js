@@ -8,5 +8,7 @@ const { userController } = require('../controllers');
 route.post('/', validateName, validatePassword, validateEmail, userController.addUser);
 
 route.get('/', auth, userController.getAllUsers);
+
+route.get('/:id', auth, userController.getUser);
   
 module.exports = route;

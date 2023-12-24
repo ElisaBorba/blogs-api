@@ -15,6 +15,7 @@ app.use(express.json());
 
 app.use('/login', loginRoutes);
 app.use('/user', userRoutes);
+app.use('/user/:id', userRoutes);
 
 // ...
 
