@@ -4,7 +4,7 @@ const express = require('express');
 
 const app = express();
 
-const { loginRoutes, userRoutes, categoriesRoutes } = require('./routes');
+const { loginRoutes, userRoutes, categoriesRoutes, postRoutes } = require('./routes');
 
 // não remova ou mova esse endpoint
 app.get('/', (_request, response) => {
@@ -17,6 +17,7 @@ app.use('/login', loginRoutes);
 app.use('/user', userRoutes);
 app.use('/user/:id', userRoutes);
 app.use('/categories', categoriesRoutes);
+app.use('/post', postRoutes);
 
 // ...
 
