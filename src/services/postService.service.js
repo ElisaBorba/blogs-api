@@ -1,14 +1,33 @@
-// const { BlogPost } = require('../models');
-// const { PostCategory } = require('../models');
+const { BlogPost, PostCategory, Category, sequelize } = require('../models');
 
-// const addPost = async (name) => {
-//   const category = await BlogPost.create({
-//     name,
-//   });
+const addPost = async ({ title, content, userId, categoryIds }) => sequelize
+  .transaction(async (transaction) => {
+    const categories = await Category.findAll({ where: { id: categoryIds }, transaction });
 
-//   return category;
-// };
+    if (categories.length !== categoryIds.length) {
+      throw new Error('One or more categoryIds not found');
+    }
 
-// module.exports = {
-//   addPost,
-// };
+    const newPost = await BlogPost.create({
+      title,
+      content,
+      userId,
+      updated: new Date(),
+      published: new Date(),
+    }, { transaction });
+
+    const postCategoryAssociations = categoryIds.map((categoryId) => ({
+      postId: newPost.id,
+      categoryId,
+    }));
+
+    await PostCategory.bulkCreate(postCategoryAssociations, { transaction });
+
+    // console.log('POOOOOOOOOOOOST', newPost);
+
+    return newPost;
+  });
+
+module.exports = {
+  addPost,
+};

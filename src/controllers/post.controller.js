@@ -1,11 +1,18 @@
-// const { postService } = require('../services');
+const { postService } = require('../services');
 
-// const addPost = async (req, res) => {
-//   const { name } = req.body;
-//   const newCategory = await postService.addPost(name);
-//   res.status(201).json(newCategory);
-// };
+const addPost = async (req, res) => {
+  try {
+    const { title, content, categoryIds } = req.body;
+    // const { id: userId } = res.params;
 
-// module.exports = {
-//   addPost,
-// };
+    const newPost = await postService.addPost({ title, content, userId, categoryIds });
+
+    res.status(201).json(newPost);
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+};
+
+module.exports = {
+  addPost,
+};
