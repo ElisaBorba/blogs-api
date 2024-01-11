@@ -5,7 +5,7 @@ const addPost = async ({ title, content, userId, categoryIds }) => sequelize
     const categories = await Category.findAll({ where: { id: categoryIds }, transaction });
 
     if (categories.length !== categoryIds.length) {
-      throw new Error('One or more categoryIds not found');
+      throw new Error('one or more "categoryIds" not found');
     }
 
     const newPost = await BlogPost.create({
@@ -23,9 +23,8 @@ const addPost = async ({ title, content, userId, categoryIds }) => sequelize
 
     await PostCategory.bulkCreate(postCategoryAssociations, { transaction });
 
-    // console.log('POOOOOOOOOOOOST', newPost);
-
     return newPost;
+    // return newPost;
   });
 
 module.exports = {
