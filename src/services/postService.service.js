@@ -24,7 +24,6 @@ const addPost = async ({ title, content, userId, categoryIds }) => sequelize
     await PostCategory.bulkCreate(postCategoryAssociations, { transaction });
 
     return newPost;
-    // return newPost;
   });
 
 module.exports = {
