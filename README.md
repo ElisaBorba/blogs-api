@@ -1,4 +1,4 @@
-# Blogs API
+# 👨‍💻 Blogs API
 Uma aplicação Node.js construída com a biblioteca Sequelize para facilitar a administração e criação de conteúdo em blogs. Este projeto incorpora um mecanismo de autenticação baseado em JWT para assegurar operações sensíveis, em conformidade com os princípios fundamentais do modelo `API REST`. No Blogs API é possível realizar operações CRUD para gerenciar categorias de posts, bem como, a criação de usuários e posts associados a um usuário e categoria.
 
 ## 💻 Tecnologias Utilizadas
@@ -9,7 +9,7 @@ Uma aplicação Node.js construída com a biblioteca Sequelize para facilitar a 
 * Sequelize
 * Docker
 
-### Estrutura do projeto
+### Estrutura do Projeto
 ```
 ├── src/
 │   ├── controllers/
@@ -22,12 +22,21 @@ Uma aplicação Node.js construída com a biblioteca Sequelize para facilitar a 
 │   ├── app.js
 └── └── server.js
 ```
-### Como executar
-1️⃣ Instale as dependências:
+### Como Executar
+1️⃣ Inicializando com docker:
+```
+docker-compose up -d --build
+docker exec -it blogs_api bash
+```
+2️⃣ Instale as dependências:
 ```
 npm install
 ```
-2️⃣ Inicie a aplicação e execute as migrations:
+3️⃣ Inicie a aplicação e execute as migrations:
 ```
 npm run prestart
+```
+🎲 Populando o banco de dados:
+```
+npm run seed
 ```
